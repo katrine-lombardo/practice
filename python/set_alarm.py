@@ -12,9 +12,13 @@
 # false    | true     => false
 # false    | false    => false
 
+# STRATEGY
+# The only time the function returns true is if employed=True AND vacation=False
+# Likely overkill to map out combos...
+
 
 def set_alarm(employed, vacation):
-    pass
+    return True if employed == True and vacation == False else False
 
 
 print(set_alarm(True, True))
