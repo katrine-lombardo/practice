@@ -15,4 +15,16 @@
 # Refactor the solution
 
 def solution(s):
-    pass
+    new_string = ""
+    for letter in s:
+        if letter == letter.upper():
+            new_letter = " " + letter
+            new_string += new_letter
+        else:
+            new_string += letter
+    return new_string
+
+
+print(solution("camelCasing"))
+print(solution("identifier"))
+print(solution(""))
