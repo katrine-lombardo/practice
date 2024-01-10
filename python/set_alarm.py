@@ -25,3 +25,13 @@ print(set_alarm(True, True))
 print(set_alarm(True, False))
 print(set_alarm(False, True))
 print(set_alarm(False, False))
+
+
+def refactored_set_alarm(employed, vacation):
+    return employed and not vacation
+
+
+print(refactored_set_alarm(True, True))
+print(refactored_set_alarm(True, False))
+print(refactored_set_alarm(False, True))
+print(refactored_set_alarm(False, False))
