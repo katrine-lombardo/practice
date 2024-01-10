@@ -14,6 +14,7 @@
 # Return the new word
 # Refactor the solution
 
+
 def solution(s):
     new_string = ""
     for letter in s:
@@ -28,3 +29,14 @@ def solution(s):
 print(solution("camelCasing"))
 print(solution("identifier"))
 print(solution(""))
+
+
+def refactored_solution(s):
+    return "".join(
+        [" " + letter if letter == letter.upper() else letter for letter in s]
+    )
+
+
+print(refactored_solution("camelCasing"))
+print(refactored_solution("identifier"))
+print(refactored_solution(""))
