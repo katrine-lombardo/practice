@@ -13,14 +13,10 @@ solution(inputArray) = ["aba", "vcd", "aba"].
 // Return a filtered list containing only items of that length
 
 function solution(inputArray) {
-  longestWord = "";
-  for (let word of inputArray) {
-    if (word.length > longestWord.length) {
-      longestWord = word;
-    }
-  }
+  const inputLengthArray = inputArray.map((word) => word.length);
+  const longestWord = Math.max(...inputLengthArray);
   const longestWordArray = inputArray.filter(
-    (word) => word.length === longestWord.length
+    (word) => word.length === longestWord
   );
   return longestWordArray;
 }
