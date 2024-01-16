@@ -19,6 +19,13 @@
 # Output: 5, nums = [0,1,4,0,3,_,_,_]
 
 
+# STRATEGY
+# Input: list of ints, int
+# Output: int
+# 1. Remove val anywhere it appears within the list (don't make a copy)
+# 2. Return the length of the updated list
+
+
 class Solution(object):
     def removeElement(self, nums, val):
         """
@@ -26,3 +33,20 @@ class Solution(object):
         :type val: int
         :rtype: int
         """
+        nums[:] = [num for num in nums if num != val]
+        return len(nums)
+
+
+# TESTING
+
+solution = Solution()
+
+nums1 = [3, 2, 2, 3]
+val1 = 3
+result1 = solution.removeElement(nums1, val1)
+print(f"[EXAMPLE 1] {result1} = 2? {nums1} = [2, 2]?")
+
+nums2 = [0, 1, 2, 2, 3, 0, 4, 2]
+val2 = 2
+result2 = solution.removeElement(nums2, val2)
+print(f"[EXAMPLE 2] {result2} = 5? {nums2} = [0, 1, 4, 0, 3]?")
