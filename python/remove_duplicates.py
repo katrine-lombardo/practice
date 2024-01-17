@@ -22,7 +22,8 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
-        return list(set(nums))
+        nums[:] = list(set(nums))
+        return nums
 
 
 solution = Solution()
