@@ -41,16 +41,16 @@ print(f"ex. 2:  {result2} should = [0, 1, 2, 3, 4]")
 
 nums = [-1, 0, 0, 0, 0, 3, 3]
 result3 = solution.removeDuplicates(nums)
-print(f"ex. 1:  {result3} should = [-1, 0, 3]")
+print(f"ex. 3:  {result3} should = [-1, 0, 3]")
 
 nums = [1, 1, 2]
 result4 = solution.removeDuplicates2(nums)
-print(f"ex. 1:  {result4} should = [1, 2]")
+print(f"ex. 4:  {result4} should = [1, 2]")
 
 nums = [0, 0, 1, 1, 1, 2, 2, 3, 3, 4]
 result5 = solution.removeDuplicates2(nums)
-print(f"ex. 2:  {result5} should = [0, 1, 2, 3, 4]")
+print(f"ex. 5:  {result5} should = [0, 1, 2, 3, 4]")
 
 nums = [-1, 0, 0, 0, 0, 3, 3]
 result6 = solution.removeDuplicates(nums)
-print(f"ex. 1:  {result6} should = [-1, 0, 3]")
+print(f"ex. 6:  {result6} should = [-1, 0, 3]")
