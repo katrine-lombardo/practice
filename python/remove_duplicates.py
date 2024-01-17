@@ -7,6 +7,14 @@ Change the array nums such that the first k elements of nums contain the unique 
 Return k.
 """
 
+# STRATEGY
+# Input: List of ints
+# Output: List of ints
+# Logic: I can map out the list, using a dictionary to track the frequency
+# of each element in the list.
+# A simpler solution would be to use set, which removes duplicates in place.
+# This might be considered a bit cheaty but it works.
+
 
 class Solution(object):
     def removeDuplicates(self, nums):
@@ -14,6 +22,7 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
+        return list(set(nums))
 
 
 solution = Solution()
