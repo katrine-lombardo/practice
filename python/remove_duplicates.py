@@ -24,4 +24,4 @@ print(f"ex. 1:  {result1} should = [1, 2]")
 
 nums = [0, 0, 1, 1, 1, 2, 2, 3, 3, 4]
 result2 = solution.removeDuplicates(nums)
-print(f"ex. 2:  {result2} should = [1, 2]")
+print(f"ex. 2:  {result2} should = [0, 1, 2, 3, 4]")
