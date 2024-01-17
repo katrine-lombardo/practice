@@ -28,10 +28,10 @@ function solution(s1, s2) {
 
   let matches = 0;
 
-  for (let i = 0; i < s1.length; i++) {
-    if (s2.includes(s1[i])) {
+  for (let letter of s1) {
+    if (s2.includes(letter)) {
       matches++;
-      s2 = s2.replace(s1[i], "");
+      s2 = s2.replace(letter, "");
     }
   }
   return matches;
@@ -45,3 +45,40 @@ console.log(`${example2} should be 4`);
 
 const example3 = solution("abca", "xyzbac");
 console.log(`${example3} should be 3`);
+
+// ----------------------------------------------------------------------------
+// REFACTORED SOLUTION
+
+// Improving my solution's time complexity from O(n^2) to O(n).
+// This solution removes the need for the nested loop and only loops over each
+// string one time.
+
+function refactoredSolution(s1, s2) {
+  s1 = s1.toLowerCase();
+  s2 = s2.toLowerCase();
+
+  const letterFrequency = {};
+
+  for (let letter of s1) {
+    letterFrequency[letter] = (letterFrequency[char] || 0) + 1;
+  }
+
+  let matches = 0;
+
+  for (let letter of s2) {
+    if (letterFrequency[letter] !== 0) {
+      matches++;
+      letterFrequency[letter]--;
+    }
+  }
+  return matches;
+}
+
+const example4 = solution("aabcc", "adcaa");
+console.log(`${example4} should be 3`);
+
+const example5 = solution("zzzz", "zzzzzzz");
+console.log(`${example5} should be 4`);
+
+const example6 = solution("abca", "xyzbac");
+console.log(`${example6} should be 3`);
