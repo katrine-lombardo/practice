@@ -4,11 +4,8 @@ Ticket numbers usually consist of an even number of digits. A ticket number is c
 Given a ticket number n, determine if it's lucky or not.
 
 Example
-
-For n = 1230, the output should be
-solution(n) = true;
-For n = 239017, the output should be
-solution(n) = false.
+For n = 1230, the output should be solution(n) = true;
+For n = 239017, the output should be solution(n) = false.
 */
 
 // STRATEGY
@@ -24,7 +21,24 @@ solution(n) = false.
 // time and store the sum in a counter variable.
 // The final test is if the sums equal one another.
 
-function solution(n) {}
+function solution(n) {
+  const nString = n.toString();
+  const halfMark = nString.length / 2;
+  const firstHalfString = nString.substring(0, halfMark);
+  const secondHalfString = nString.substring(halfMark, nString.length + 1);
+
+  let firstSum = 0;
+  for (let num of firstHalfString) {
+    firstSum += parseInt(num);
+  }
+
+  let secondSum = 0;
+  for (let num of secondHalfString) {
+    secondSum += parseInt(num);
+  }
+
+  return firstSum === secondSum;
+}
 
 const example1 = solution(1230);
 console.log(`${example1} should = true`);
