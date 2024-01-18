@@ -48,3 +48,24 @@ console.log(`${example2} should = false`);
 
 const example3 = solution(134008);
 console.log(`${example3} should = true`);
+
+// ----------------------------------------------------------------------------
+// REFACTORED
+
+function refactoredSolution(n) {
+  const nString = n.toString();
+  const sum = (str) => str.split("").reduce((a, b) => a + parseInt(b), 0);
+  return (
+    sum(nString.slice(0, nString.length / 2)) ===
+    sum(nString.slice(nString.length / 2, nString.length + 1))
+  );
+}
+
+const example4 = refactoredSolution(1230);
+console.log(`${example4} should = true`);
+
+const example5 = refactoredSolution(239017);
+console.log(`${example5} should = false`);
+
+const example6 = refactoredSolution(134008);
+console.log(`${example6} should = true`);
