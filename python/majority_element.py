@@ -37,6 +37,23 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
+        frequencyDict = {}
+
+        for num in nums:
+            if num in frequencyDict:
+                frequencyDict[num] += 1
+            else:
+                frequencyDict[num] = 1
+
+        max_value = 0
+        max_key = 0
+
+        for key, value in frequencyDict.items():
+            if value > max_value:
+                max_key = key
+                max_value = value
+
+        return max_key
 
 
 solution = Solution()
