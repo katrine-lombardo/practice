@@ -18,6 +18,18 @@ n == nums.length
 -109 <= nums[i] <= 109
 """
 
+# STRATEGY
+# Input: list of ints
+# Output: int
+# Notes: Edge cases to look out for can include empty lists, lists with equal
+# frequency of occurring elements
+# Logic:
+# I can use a range and a pointer variable to map through the nums list and
+# create a dictionary to hold the frequencies.
+# I want to loop through the dictionary only once, perhaps comparing against a
+# max value variable.
+# Return the key corresponding to the value that has the highest frequency.
+
 
 class Solution(object):
     def majorityElement(self, nums):
@@ -26,3 +38,13 @@ class Solution(object):
         :rtype: int
         """
 
+
+solution = Solution()
+
+nums = [3, 2, 3]
+example1 = solution.majorityElement(nums)
+print(f"{example1} should = 3")
+
+nums = [2, 2, 1, 1, 1, 2, 2]
+example2 = solution.majorityElement(nums)
+print(f"{example2} should = 2")
