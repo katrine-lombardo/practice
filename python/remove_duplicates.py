@@ -10,10 +10,11 @@ Return k.
 # STRATEGY
 # Input: List of ints
 # Output: List of ints
-# Logic: I can map out the list, using a dictionary to track the frequency
-# of each element in the list.
-# A simpler solution would be to use set, which removes duplicates in place.
-# This might be considered a bit cheaty but it works.
+# Logic: My original instinct was to use a set, but it does not preserve order,
+# so I'll need to ensure the converted list is sorted.
+# My second solution is a more manual solution which better preserves time
+# complexity, in comparison to my original solution (O(n2) --> O(n))
+# Using a range to map through nums, I only need to loop over the list one time.
 
 
 class Solution(object):
@@ -22,11 +23,20 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
-        nums[:] = list(set(nums))
+        nums[:] = sorted(list(set(nums)))
         return nums
 
     def removeDuplicates2(self, nums):
-        pass
+        if not nums:
+            return 0
+
+        last = 0
+        for i in range(1, len(nums)):
+            if nums[i] != nums[last]:
+                last += 1
+                nums[last] = nums[i]
+
+        return nums[: last + 1]
 
 
 solution = Solution()
