@@ -36,6 +36,10 @@ class Solution(object):
         :type k: int
         :rtype: None Do not return anything, modify nums in-place instead.
         """
+        first_half = nums[-k:]
+        second_half = nums[:-k]
+        nums[:] = first_half + second_half
+        return nums
 
 
 solution = Solution()
@@ -43,9 +47,9 @@ solution = Solution()
 nums = [1, 2, 3, 4, 5, 6, 7]
 k = 3
 example1 = solution.rotate(nums, k)
-print(f"{example1} should = [5,6,7,1,2,3,4]")
+print(f"{example1} should = [5, 6, 7, 1, 2, 3, 4]")
 
 nums = [-1, -100, 3, 99]
 k = 2
 example2 = solution.rotate(nums, k)
-print(f"{example2} should = [3,99,-1,-100]")
+print(f"{example2} should = [3, 99, -1,-100]")
