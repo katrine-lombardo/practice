@@ -25,7 +25,19 @@ If a[i] = -1, then the ith position is occupied by a tree. Otherwise a[i] is the
 // 4. I'll loop through the original list and reassign the value at that index
 //    to the new value from the values-only sorted list.
 
-function solution(a) {}
+function solution(a) {
+  const sortedHeights = a
+    .filter((height) => height != -1)
+    .sort((a, b) => a - b);
+
+  for (let i = 0; i < a.length; i++) {
+    if (a[i] !== -1) {
+      a[i] = sortedHeights[0];
+      sortedHeights.shift();
+    }
+  }
+  return a;
+}
 
 const example1 = solution([-1, 150, 190, 170, -1, -1, 160, 180]);
 console.log(`${example1} should = [-1, 150, 160, 170, -1, -1, 180, 190]`);
