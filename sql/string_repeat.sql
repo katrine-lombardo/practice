@@ -18,3 +18,7 @@ INSERT INTO repeatstr (n, s) VALUES
     (5, "#"),
     (2, "ha");
 
+SELECT s, n,
+REPLICATE(s, n)
+AS res
+FROM repeatstr;
