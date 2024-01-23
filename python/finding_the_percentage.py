@@ -45,3 +45,31 @@ if __name__ == "__main__":
     names_scores = student_marks[query_name]
     avg = sum(names_scores) / len(names_scores)
     print(f"{avg:.2f}")
+
+# -----------------------------------------------------------------------------
+# Experimental testing zone
+
+
+def process_sample(sample):
+    n = int(sample[0])
+    student_marks = {}
+    for line in sample[1:-1]:
+        name, *scores = line.split()
+        scores = list(map(float, scores))
+        student_marks[name] = scores
+    query_name = sample[-1]
+
+    names_scores = student_marks[query_name]
+    avg = sum(names_scores) / len(names_scores)
+    print(f"{avg:.2f}")
+    return f"{avg:.2f}"
+
+
+sample0 = ["3", "Krishna 67 68 69", "Arjun 70 98 63", "Malika 52 56 60", "Malika"]
+sample1 = ["2", "Harsh 25 26.5 28", "Anurag 26 28 30", "Harsh"]
+
+result0 = process_sample(sample0)
+print(f"{result0} should = 56.00")
+
+result1 = process_sample(sample1)
+print(f"{result1} should = 26.50")
