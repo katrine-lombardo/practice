@@ -30,6 +30,8 @@ Sample 1 Output: 26.50
 # would be a dict, with k = name and v = list of grades.
 # Once the dict is populated I can lookup a particular name in the dict, and
 # manually calculate the average of the items in the list.
+## Chatted to GrandPa Ted and walked through the code below to better understand
+## how the input was split - Every day's a school day :)
 
 if __name__ == "__main__":
     n = int(input())
@@ -39,3 +41,7 @@ if __name__ == "__main__":
         scores = list(map(float, line))
         student_marks[name] = scores
     query_name = input()
+
+    names_scores = student_marks[query_name]
+    avg = sum(names_scores) / len(names_scores)
+    print(f"{avg:.2f}")
