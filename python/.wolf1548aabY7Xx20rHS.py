@@ -37,7 +37,7 @@ class Solution(object):
         :rtype: None Do not return anything, modify nums in-place instead.
         """
         while k >= len(nums):
-            k -= len(nums)
+            k 
 
         first_half = nums[-k:]
         second_half = nums[:-k]
