@@ -7,6 +7,26 @@ SELECT id, stadium, team1, team2 FROM game
 WHERE id LIKE 1012;
 
 -- 3. Combine the two steps above into a single query to show the player, teamid, stadium and mdate for every German goal.
-SELECT player, teamid, stadium, mdate
-FROM game JOIN goal ON (id=matchid)
+SELECT player, teamid, stadium, mdate FROM game
+JOIN goal ON (id=matchid)
 WHERE teamid LIKE 'GER';
+
+-- 4. Show the team1, team2 and player for every goal scored by a player called Mario player LIKE 'Mario%'
+SELECT team1, team2, player FROM game
+JOIN goal ON (id=matchid)
+WHERE player LIKE 'Mario%';
+
+-- 5. Show player, teamid, coach, gtime for all goals scored in the first 10 minutes gtime<=10.
+SELECT player, teamid, coach, gtime from goal
+JOIN eteam ON (teamid=id)
+WHERE gtime<=10;
+
+-- 6. List the dates of the matches and the name of the team in which 'Fernando Santos' was the team1 coach.
+SELECT mdate, teamname from game
+JOIN eteam ON (team1=eteam.id)
+WHERE coach LIKE 'Fernando Santos';
+
+-- 7. List the player for every goal scored in a game where the stadium was 'National Stadium, Warsaw'
+SELECT player from goal
+JOIN game ON (id=matchid)
+WHERE game.stadium LIKE 'National Stadium, Warsaw';
