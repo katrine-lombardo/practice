@@ -40,6 +40,12 @@ Notes:
     or return `-1` or ERROR or Nothing or None depending on the language.
 */
 
+// NOTES
+// Input: array of ints, int
+// Output: int
+// Logic: There are two things to accomplish for this challenge: Actually
+// finding the correct solution, and then throwing the right error.
+
 function newAvg(arr, newavg) {
   // your code
 }
