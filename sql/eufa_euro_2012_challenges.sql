@@ -36,3 +36,9 @@ WHERE game.stadium LIKE 'National Stadium, Warsaw';
 SELECT DISTINCT player FROM goal
 JOIN game ON (matchid=id)
 WHERE (team1='GER' OR team2='GER') AND teamid!='GER';
+
+
+-- 9. Show teamname and the total number of goals scored.
+SELECT teamname, COUNT(gtime) FROM goal
+JOIN eteam ON (id=teamid)
+GROUP BY teamname;
