@@ -42,3 +42,8 @@ WHERE (team1='GER' OR team2='GER') AND teamid!='GER';
 SELECT teamname, COUNT(gtime) FROM goal
 JOIN eteam ON (id=teamid)
 GROUP BY teamname;
+
+-- 10. Show the stadium and the # goals scored in each stadium.
+SELECT stadium, COUNT(gtime) FROM game
+JOIN goal ON (id=matchid)
+GROUP BY stadium;
