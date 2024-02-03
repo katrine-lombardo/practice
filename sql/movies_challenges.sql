@@ -18,3 +18,20 @@ WHERE name='Glenn Close';
 -- 5. What is the id of the film 'Casablanca'
 SELECT id from movie
 WHERE title='Casablanca';
+
+-- 6. Obtain the cast list for 'Casablanca'. Use movieid=11768, (or whatever value you got from the previous question)
+SELECT name FROM casting
+JOIN actor ON (actorid=id)
+WHERE movieid=11768;
+
+-- 7. Obtain the cast list for the film 'Alien'
+SELECT name FROM casting
+JOIN actor ON (actorid=actor.id)
+JOIN movie ON (movieid=movie.id)
+WHERE title='Alien';
+
+-- 8. List the films in which 'Harrison Ford' has appeared.
+SELECT title FROM casting
+JOIN actor ON (actorid=actor.id)
+JOIN movie ON (movieid=movie.id)
+WHERE name='Harrison Ford';
