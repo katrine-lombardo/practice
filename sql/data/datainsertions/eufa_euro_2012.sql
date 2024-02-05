@@ -1,5 +1,5 @@
 -- CREATE TABLES
-CREATE TABLE game (
+CREATE TABLE IF NOT EXISTS game (
     id INTEGER PRIMARY KEY,
     mdate TEXT NOT NULL,
     stadium TEXT NOT NULL,
@@ -7,7 +7,7 @@ CREATE TABLE game (
     team2 TEXT NOT NULL
 );
 
-CREATE TABLE goal (
+CREATE TABLE IF NOT EXISTS goal (
     matchid INTEGER,
     teamid TEXT,
     player TEXT NOT NULL,
@@ -16,7 +16,7 @@ CREATE TABLE goal (
     FOREIGN KEY (teamid) REFERENCES eteam(id)
 );
 
-CREATE TABLE eteam (
+CREATE TABLE IF NOT EXISTS eteam (
     id TEXT PRIMARY KEY,
     teamname TEXT NOT NULL,
     coach TEXT NOT NULL
