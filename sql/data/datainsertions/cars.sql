@@ -1,18 +1,17 @@
 -- CREATE TABLES
-
-CREATE TABLE Manufacturer (
+CREATE TABLE IF NOT EXISTS Manufacturer (
     id INTEGER PRIMARY KEY,
     name TEXT NOT NULL
 );
 
-CREATE TABLE Model (
+CREATE TABLE IF NOT EXISTS Model (
     id INTEGER PRIMARY KEY,
     manufacturer_id INTEGER,
     name TEXT NOT NULL,
     FOREIGN KEY (manufacturer_id) REFERENCES Manufacturer(id)
 );
 
-CREATE TABLE Automobile (
+CREATE TABLE IF NOT EXISTS Automobile (
     id INTEGER PRIMARY KEY,
     year INTEGER NOT NULL,
     model_id INTEGER,
@@ -20,7 +19,7 @@ CREATE TABLE Automobile (
     FOREIGN KEY (model_id) REFERENCES Model(id)
 );
 
-CREATE TABLE Color (
+CREATE TABLE IF NOT EXISTS Color (
     id INTEGER PRIMARY KEY,
     color TEXT NOT NULL,
     automobile_id INTEGER,

@@ -1,4 +1,5 @@
-CREATE TABLE users (
+-- CREATE TABLES
+CREATE TABLE IF NOT EXISTS users (
   id INTEGER NOT NULL UNIQUE,
   first TEXT NOT NULL,
   last TEXT NOT NULL,
@@ -7,7 +8,7 @@ CREATE TABLE users (
   username TEXT NOT NULL
 );
 
-CREATE TABLE trucks (
+CREATE TABLE IF NOT EXISTS trucks (
   id INTEGER NOT NULL UNIQUE,
   name TEXT NOT NULL,
   website TEXT NOT NULL,
@@ -16,7 +17,7 @@ CREATE TABLE trucks (
   owner_id INTEGER NOT NULL REFERENCES users(id)
 );
 
-CREATE TABLE reviews (
+CREATE TABLE IF NOT EXISTS reviews (
   id INTEGER NOT NULL UNIQUE,
   title TEXT NOT NULL,
   content TEXT NOT NULL,
@@ -25,20 +26,20 @@ CREATE TABLE reviews (
   truck_id INTEGER NOT NULL REFERENCES trucks("id")
 );
 
-CREATE TABLE menu_items (
+CREATE TABLE IF NOT EXISTS menu_items (
     id INTEGER NOT NULL UNIQUE,
     name TEXT NOT NULL,
     calories INTEGER NOT NULL
 );
 
-CREATE TABLE truck_menu_items (
+CREATE TABLE IF NOT EXISTS truck_menu_items (
   truck_id INTEGER NOT NULL REFERENCES trucks("id"),
   menu_item_id INTEGER NOT NULL REFERENCES menu_items("id"),
   price INTEGER NOT NULL
 );
 
 
-
+-- INSERT DATA
 INSERT INTO users (id, first, last, avatar, email, username) VALUES
 (1, 'Alice', 'Smith', 'avatar1.png', 'alice@example.com', 'alice123'),
 (2, 'Bob', 'Jones', 'avatar2.png', 'bob@example.com', 'bobjones'),

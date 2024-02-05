@@ -1,5 +1,5 @@
 -- CREATE TABLES
-CREATE TABLE movie (
+CREATE TABLE IF NOT EXISTS movie (
     id INTEGER NOT NULL UNIQUE,
     title VARCHAR(70),
     yr DECIMAL(4),
@@ -8,13 +8,13 @@ CREATE TABLE movie (
     gross INTEGER
 );
 
-CREATE TABLE actor (
+CREATE TABLE IF NOT EXISTS actor (
     id INTEGER,
     name VARCHAR(36),
     PRIMARY KEY (id)
 );
 
-CREATE TABLE casting (
+CREATE TABLE IF NOT EXISTS casting (
     movieid INTEGER REFERENCES movie(id),
     actorid INTEGER REFERENCES actor(id),
     ord INTEGER
