@@ -47,3 +47,22 @@ SELECT title, name FROM movie
 JOIN casting ON (movieid=movie.id)
 JOIN actor ON (actorid=actor.id)
 WHERE yr=1962 AND ord=1;
+
+-- 11. Which were the busiest years for 'Rock Hudson', show the year and the number of movies he made each year for any year in which he made more than 2 movies.
+SELECT yr, COUNT(title) FROM movie
+JOIN casting ON (movieid=movie.id)
+JOIN actor ON (actorid=actor.id)
+WHERE name='Rock Hudson'
+GROUP BY yr
+HAVING COUNT(title) > 2;
+
+--12. List the film title and the leading actor for all of the films 'Julie Andrews' played in.
+SELECT title, name FROM movie
+JOIN casting ON (movieid=movie.id AND ord=1)
+JOIN actor ON (actorid=actor.id)
+WHERE movie.id IN (
+    SELECT movieid FROM casting
+    WHERE actorid IN (
+        SELECT id FROM actor
+        WHERE name='Julie Andrews'))
+GROUP BY title;
