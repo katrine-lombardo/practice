@@ -47,6 +47,29 @@ WHERE a.stop=(SELECT id FROM stops WHERE name='Craiglockhart')
     AND b.stop=(SELECT id FROM stops WHERE name='Tollcross');
 
 -- 9. Give a distinct list of the stops which may be reached from 'Craiglockhart' by taking one bus, including 'Craiglockhart' itself, offered by the LRT company. Include the company and bus no. of the relevant services.
-
+SELECT stopa.name, a.company, a.num FROM route a
+JOIN route b ON (a.company=b.company AND a.num=b.num)
+JOIN stops stopa ON (a.stop=stopa.id)
+JOIN stops stopb ON (b.stop=stopb.id)
+WHERE stopb.name='Craiglockhart' AND a.company='LRT'
+ORDER BY num, a.pos;
 
 -- 10. Find the routes involving two buses that can go from Craiglockhart to Lochend. Show the bus no. and company for the first bus, the name of the stop for the transfer, and the bus no. and company for the second bus.
+SELECT Departure.num, Departure.company, stops.name, Terminus.num, Terminus.company
+FROM
+  (
+    SELECT a.company, a.num, b.stop
+    FROM route a
+    INNER JOIN route b ON a.company = b.company AND a.num = b.num
+    WHERE a.stop = (SELECT id FROM stops WHERE name = 'Craiglockhart')
+  ) Departure
+JOIN
+  (
+    SELECT a.company, a.num, b.stop
+    FROM route a
+    INNER JOIN route b ON a.company = b.company AND a.num = b.num
+    WHERE a.stop = (SELECT id FROM stops WHERE name = 'Lochend')
+  ) Terminus
+ON Departure.stop = Terminus.stop
+JOIN stops ON stops.id = Departure.stop
+ORDER BY Departure.num, stops.name, Terminus.num;
