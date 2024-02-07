@@ -15,12 +15,13 @@ If no occurrences can be found, a count of 0 should be returned.
 
 
 def str_count(strng, letter):
-    counter = 0
-    for char in strng:
-        if letter == char:
-            counter += 1
-    return counter
-    
+    # counter = 0
+    # for char in strng:
+    #     if letter == char:
+    #         counter += 1
+    # return counter
+    return len([char for char in strng if char == letter])
+
 
 
 example1 = str_count("Hello", "o")
