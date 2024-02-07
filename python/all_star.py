@@ -23,7 +23,6 @@ def str_count(strng, letter):
     return len([char for char in strng if char == letter])
 
 
-
 example1 = str_count("Hello", "o")
 print(example1)
 
