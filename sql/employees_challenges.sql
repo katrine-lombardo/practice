@@ -19,11 +19,17 @@ WHERE projects.title='Build a cool site';
 
 
 ---------------------------- JUNIOR INTERVIEW PREP ----------------------------
--- 5. Write a SQL query to retrieve the first name, last name, and salary of all employees in the ‘Sales’ department.
-
+-- 5. Write a SQL query to retrieve the first name, last name, and salary of all
+--    employees in the ‘Sales’ department.
+SELECT first_name, last_name, salary FROM employees
+INNER JOIN departments ON (employees.department_id=departments.id)
+WHERE departments.name='Sales';
 
 -- 6. Write a SQL query to retrieve the names of all employees who are working on a project with a budget of more than $100,000.
-
+SELECT CONCAT(first_name, ' ', last_name) as full_name FROM employees
+INNER JOIN employees_projects ON (employee_id=employees.id)
+INNER JOIN projects ON (project_id=projects.id)
+WHERE projects.budget > 100000;
 
 -- 7. Write a SQL query to retrieve the names of all employees who are not working on any project.
 
