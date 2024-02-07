@@ -32,12 +32,36 @@ INNER JOIN projects ON (project_id=projects.id)
 WHERE projects.budget > 100000;
 
 -- 7. Write a SQL query to retrieve the names of all employees who are not working on any project.
-
+SELECT CONCAT(first_name, ' ', last_name) AS "employees not on any projects" FROM employees
+LEFT JOIN employees_projects AS ep ON (employee_id=employees.id)
+WHERE ep.project_id IS NULL;
 
 -- 8. Write a SQL query to retrieve the names of all employees who are working on a project that started before January 1, 2022 and ended after December 31, 2022.
+--    NOTES: It might be easier to start with a table of names, start dates, and
+--    end dates. Note wordong of question:
+--    From there, filter to keep start dates before 1/1/22, and keep end dates after 12/31/22.
+SELECT CONCAT(first_name, ' ', last_name) AS "ees on projects in 2022" FROM employees
+LEFT JOIN employees_projects AS ep ON (ep.employee_id=employees.id)
+LEFT JOIN projects AS p ON (ep.project_id=p.id)
+WHERE p.start_date<'2022-01-01' AND p.end_date>'2022-12-31';
 
-
--- 9. Write a SQL query to retrieve the names of all employees who are working on more than one project.
+-- 9. Write a SQL query to retrieve the names of all employees who are working
+--    on more than one project.
+--    NOTE: I'm including the additional column for number of projects as this
+--    contextual information may be relevant given the nature of the question.
+SELECT CONCAT(first_name, ' ', last_name) AS "ees on more than one project", COUNT(ep.project_id) AS "num of projects"
+FROM employees AS e
+INNER JOIN employees_projects AS ep ON e.id = ep.employee_id
+GROUP BY e.id, e.first_name, e.last_name
+HAVING COUNT(ep.project_id) > 1
+ORDER BY "ees on more than one project";
+-- Without the num of projects column:
+SELECT CONCAT(first_name, ' ', last_name) AS "ees on more than one project"
+FROM employees AS e
+INNER JOIN employees_projects AS ep ON e.id = ep.employee_id
+GROUP BY e.id, e.first_name, e.last_name
+HAVING COUNT(ep.project_id) > 1
+ORDER BY "ees on more than one project";
 
 
 ------------------------- INTERMEDIATE INTERVIEW PREP -------------------------
