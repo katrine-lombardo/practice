@@ -63,6 +63,16 @@ GROUP BY e.id, e.first_name, e.last_name
 HAVING COUNT(ep.project_id) > 1
 ORDER BY "ees on more than one project";
 
+-- BONUS: I'd like to see how I'd concatenate a full list of employees's names
+-- on each project.
+SELECT p.title, GROUP_CONCAT(ep.employee_id, ', ') AS "all_employee_ids", GROUP_CONCAT(e.first_name || ' ' || e.last_name) AS "full_name"
+FROM projects AS p
+JOIN employees_projects AS ep ON (p.id=ep.project_id)
+JOIN employees AS e ON (e.id=ep.employee_id)
+GROUP BY p.title
+;
+
+
 
 ------------------------- INTERMEDIATE INTERVIEW PREP -------------------------
 -- 10. Write a query to display the total salary of employees in each department.
