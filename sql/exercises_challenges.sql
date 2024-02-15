@@ -90,18 +90,27 @@ WHERE DATE(starttime) = '2012-09-21'
 ORDER BY starttime;
 
 -- 03. Produce a list of all members who have recommended another member
-
+-- How can you output a list of all members who have recommended another member? Ensure that there are no duplicates in the list, and that results are ordered by (surname, firstname).
+SELECT referrer.firstname, referrer.surname
+    FROM cd.members AS referrer
+JOIN cd.members AS member ON (member.recommendedby=referrer.memid)
+GROUP BY referrer.memid
+ORDER BY surname, firstname;
 
 -- 04. Produce a list of all members, along with their recommender
+
 
 
 -- 05. Produce a list of all members who have used a tennis court
 
 
+
 -- 06. Produce a list of costly bookings
 
 
+
 -- 07. Produce a list of all members, along with their recommender, using no joins.
+
 
 
 -- 08. Produce a list of costly bookings, using a subquery
