@@ -108,8 +108,13 @@ LEFT JOIN cd.members AS rec ON (mem.recommendedby=rec.memid)
 ORDER BY memsname, memfname;
 
 -- 05. Produce a list of all members who have used a tennis court
-
-
+-- How can you produce a list of all members who have used a tennis court? Include in your output the name of the court, and the name of the member formatted as a single column. Ensure no duplicate data, and order by the member name followed by the facility name.
+SELECT DISTINCT CONCAT(firstname, ' ', surname) AS member, name AS facility
+FROM cd.members AS m
+JOIN cd.bookings AS b ON (m.memid=b.memid)
+JOIN cd.facilities AS f ON (b.facid=f.facid)
+WHERE f.name LIKE '%Tennis Court%'
+ORDER BY member, facility;
 
 -- 06. Produce a list of costly bookings
 
