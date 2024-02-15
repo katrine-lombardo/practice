@@ -48,6 +48,10 @@ FROM cd.members
 WHERE joindate > '2012-09-01';
 
 -- 09. Removing duplicates, and ordering results
+-- How can you produce an ordered list of the first 10 surnames in the members table? The list must not contain duplicates.
+SELECT DISTINCT surname FROM cd.members
+ORDER BY surname
+LIMIT 10;
 
 -- 10. Combining results from multiple queries
 
