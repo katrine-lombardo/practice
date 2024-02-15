@@ -60,5 +60,7 @@ UNION
 SELECT name FROM cd.facilities;
 
 -- 11. Simple aggregation
+-- You'd like to get the signup date of your last member. How can you retrieve this information?
+SELECT MAX(joindate) AS latest FROM cd.members;
 
 -- 12. More aggregation
