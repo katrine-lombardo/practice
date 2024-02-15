@@ -71,19 +71,32 @@ WHERE joindate = (
     SELECT MAX(joindate) FROM cd.members
 );
 
+
+-------------------------------------------------------------------------------
 -- JOINS AND SUBQUERIES
 -- 01. Retrieve the start times of members' bookings
+--     How can you produce a list of the start times for bookings by members
+--     named 'David Farrell'?
+SELECT starttime FROM cd.bookings AS b
+JOIN cd.members AS m ON (m.memid = b.memid)
+WHERE m.firstname = 'David' AND m.surname = 'Farrell';
 
 -- 02. Work out the start times of bookings for tennis courts
 
+
 -- 03. Produce a list of all members who have recommended another member
+
 
 -- 04. Produce a list of all members, along with their recommender
 
+
 -- 05. Produce a list of all members who have used a tennis court
+
 
 -- 06. Produce a list of costly bookings
 
+
 -- 07. Produce a list of all members, along with their recommender, using no joins.
+
 
 -- 08. Produce a list of costly bookings, using a subquery
