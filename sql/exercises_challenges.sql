@@ -1,4 +1,5 @@
--- Simple SQL Queries
+-- SIMPLE SQL QUERIES
+
 -- 01. Retrieve everything from a table
 -- How can you retrieve all the information from the cd.facilities table?
 SELECT * FROM cd.facilities;
@@ -69,3 +70,20 @@ SELECT firstname, surname, joindate FROM cd.members
 WHERE joindate = (
     SELECT MAX(joindate) FROM cd.members
 );
+
+-- JOINS AND SUBQUERIES
+-- 01. Retrieve the start times of members' bookings
+
+-- 02. Work out the start times of bookings for tennis courts
+
+-- 03. Produce a list of all members who have recommended another member
+
+-- 04. Produce a list of all members, along with their recommender
+
+-- 05. Produce a list of all members who have used a tennis court
+
+-- 06. Produce a list of costly bookings
+
+-- 07. Produce a list of all members, along with their recommender, using no joins.
+
+-- 08. Produce a list of costly bookings, using a subquery
