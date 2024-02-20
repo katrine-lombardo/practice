@@ -136,7 +136,9 @@ WHERE DATE(starttime)='2012-09-14'
 	 )
 ORDER BY cost DESC;
 
--- 07. Produce a list of all members, along with their recommender, using no joins.
+-- 07. Produce a list of all members, along with their recommender, using no
+--     joins.
+-- How can you output a list of all members, including the individual who recommended them (if any), without using any joins? Ensure that there are no duplicates in the list, and that each firstname + surname pairing is formatted as a column and ordered.
 -- Using a left join:
     -- SELECT DISTINCT CONCAT(m.firstname, ' ', m.surname) AS member,
     -- 	CONCAT(recommender.firstname, ' ', recommender.surname) AS recommender
@@ -153,3 +155,20 @@ SELECT DISTINCT CONCAT(m.firstname, ' ', m.surname) AS member, (
 ORDER BY member;
 
 -- 08. Produce a list of costly bookings, using a subquery
+-- The Produce a list of costly bookings exercise contained some messy logic: we had to calculate the booking cost in both the WHERE clause and the CASE statement. Try to simplify this calculation using subqueries.
+SELECT member, facility, cost from (
+    SELECT
+        CONCAT(m.firstname, ' ', m.surname) AS member,
+        f.name AS facility,
+        CASE
+            WHEN m.memid=0 THEN b.slots * f.guestcost
+            ELSE b.slots * f.membercost
+            END
+        AS cost
+    FROM cd.members AS m
+        JOIN cd.bookings AS b ON (m.memid=b.memid)
+        JOIN cd.facilities AS f ON (b.facid=f.facid)
+    WHERE DATE(starttime)='2012-09-14'
+    ) AS bookings
+WHERE cost > 30
+ORDER BY cost DESC;
