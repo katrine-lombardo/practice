@@ -1,8 +1,11 @@
 -- 01. Count the number of facilities
-
+SELECT COUNT(facid) FROM cd.facilities;
 
 -- 02. Count the number of expensive facilities
-
+-- Produce a count of the number of facilities that have a cost to guests of 10 or more.
+SELECT COUNT(facid)
+FROM cd.facilities
+WHERE guestcost>=10;
 
 -- 03. Count the number of recommendations each member makes.
 
