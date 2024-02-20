@@ -20,8 +20,10 @@ INSERT INTO cd.facilities (facid, name, membercost, guestcost, initialoutlay, mo
 (SELECT (SELECT MAX(facid) FROM cd.facilities)+1, 'Spa', 20, 30, 100000, 800);
 
 -- 04. Update some existing data
-
-
+-- We made a mistake when entering the data for the second tennis court. The initial outlay was 10000 rather than 8000: you need to alter the data to fix the error.
+UPDATE cd.facilities
+SET initialoutlay = 10000
+WHERE name='Tennis Court 2';
 
 -- 05. Update multiple rows and columns at the same time
 
