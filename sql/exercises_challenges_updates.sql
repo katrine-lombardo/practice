@@ -45,7 +45,7 @@ WHERE name='Tennis Court 2';
 DELETE FROM cd.bookings;
 
 -- 08. Delete a member from the cd.members table
-
-
+-- We want to remove member 37, who has never made a booking, from our database. How can we achieve that?
+DELETE FROM cd.members WHERE memid=37;
 
 -- 09. Delete based on a subquery
