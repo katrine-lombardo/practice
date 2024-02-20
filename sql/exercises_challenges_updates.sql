@@ -26,7 +26,10 @@ SET initialoutlay = 10000
 WHERE name='Tennis Court 2';
 
 -- 05. Update multiple rows and columns at the same time
-
+-- We want to increase the price of the tennis courts for both members and guests. Update the costs to be 6 for members, and 30 for guests.
+UPDATE cd.facilities
+SET membercost=6, guestcost=30
+WHERE name LIKE '%Tennis Court%';
 
 
 -- 06. Update a row based on the contents of another row
