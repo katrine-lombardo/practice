@@ -137,7 +137,19 @@ WHERE DATE(starttime)='2012-09-14'
 ORDER BY cost DESC;
 
 -- 07. Produce a list of all members, along with their recommender, using no joins.
-
-
+-- Using a left join:
+    -- SELECT DISTINCT CONCAT(m.firstname, ' ', m.surname) AS member,
+    -- 	CONCAT(recommender.firstname, ' ', recommender.surname) AS recommender
+    -- 	FROM cd.members AS m
+    -- LEFT JOIN cd.members AS recommender ON (m.recommendedby=recommender.memid)
+    -- ORDER BY member;
+-- Using a subquery:
+SELECT DISTINCT CONCAT(m.firstname, ' ', m.surname) AS member, (
+    SELECT CONCAT(recs.firstname, ' ', recs.surname) AS recommender
+    FROM cd.members AS recs
+    WHERE m.recommendedby=recs.memid
+    )
+    FROM cd.members AS m
+ORDER BY member;
 
 -- 08. Produce a list of costly bookings, using a subquery
