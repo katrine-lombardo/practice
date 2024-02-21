@@ -1,5 +1,5 @@
 """
-Get Gnome Information
+Get DnD Race Information
 """
 
 import requests
@@ -40,11 +40,26 @@ def transform(data_list: list) -> pd.DataFrame:
 # LOAD
 def load(df: pd.DataFrame, table_name: str) -> None:
     if not df.empty:
+        df["new_column"] = "default_value"
         disk_engine = create_engine(f"sqlite:///my_lite_store.db")
         df.to_sql(table_name, disk_engine, if_exists="replace", index=False)
         print(f"Data loaded into {table_name} table successfully.")
     else:
         print("Error: DataFrame is empty. No data to load.")
+
+
+from sqlalchemy import MetaData, Table, Column, String
+
+
+engine = create_engine("sqlite:///my_lite_store.db")
+metadata = MetaData()
+existing_table = Table("dnd_races", metadata, autoload=True, autoload_with=engine)
+new_column = Column("new_column", String, default="default_value")
+existing_table.append_column(new_column)
+metadata.create_all(engine)
+print(
+    "Table 'dnd_races' altered successfully to include the new column with default value."
+)
 
 
 # EXECUTE
