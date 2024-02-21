@@ -8,36 +8,55 @@ from sqlalchemy import create_engine
 
 
 # EXTRACT
-def extract() -> dict:
-    API_URL = "https://www.dnd5eapi.co/api/races/gnome"
-    data = requests.get(API_URL).json()
-    return data
+def extract(api_urls: list) -> list:
+    extracted_data = []
+    for url in api_urls:
+        data = requests.get(url).json()
+        if data:
+            extracted_data.append(data)
+    return extracted_data
 
 
 # TRANSFORM
-def transform(data: dict) -> pd.DataFrame:
-    gnome_data = {
-        "name": data.get("name"),
-        "speed": data.get("speed"),
-        "alignment": data.get("alignment"),
-        "languages": ",".join([lang["name"] for lang in data.get("languages", [])]),
-        "traits": ",".join([trait["name"] for trait in data.get("traits", [])]),
-    }
-    df = pd.DataFrame([gnome_data])
-    df.dropna(inplace=True)
-    return df
+def transform(data_list: list) -> pd.DataFrame:
+    dfs = []
+    for data in data_list:
+        race_data = {
+            "name": data.get("name"),
+            "speed": data.get("speed"),
+            "alignment": data.get("alignment"),
+            "languages": ",".join([lang["name"] for lang in data.get("languages", [])]),
+            "traits": ",".join([trait["name"] for trait in data.get("traits", [])]),
+        }
+        print(f"Race data: {race_data}")
+        df = pd.DataFrame([race_data])
+        dfs.append(df)
+    if dfs:
+        return pd.concat(dfs, ignore_index=True)
+    else:
+        return pd.DataFrame()
 
 
 # LOAD
-def load(df: pd.DataFrame) -> None:
-    disk_engine = create_engine(f"sqlite:///my_lite_store.db")
-    df.to_sql("gnome_info", disk_engine, if_exists="replace")
+def load(df: pd.DataFrame, table_name: str) -> None:
+    if not df.empty:
+        disk_engine = create_engine(f"sqlite:///my_lite_store.db")
+        df.to_sql(table_name, disk_engine, if_exists="replace", index=False)
+        print(f"Data loaded into {table_name} table successfully.")
+    else:
+        print("Error: DataFrame is empty. No data to load.")
 
 
 # EXECUTE
-data = extract()
-if data:
-    df = transform(data)
-    load(df)
+api_urls = [
+    "https://www.dnd5eapi.co/api/races/gnome",
+    "https://www.dnd5eapi.co/api/races/elf",
+    "https://www.dnd5eapi.co/api/races/half-orc",
+]
+data_list = extract(api_urls)
+df = transform(data_list)
+
+if not df.empty:
+    load(df, "dnd_races")
 else:
-    print("Error: Failed to retrieve data from the API.")
+    print("Error: No data to load.")
