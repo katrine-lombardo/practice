@@ -5,7 +5,6 @@ Python Extract Transform Load Example
 import requests
 import pandas as pd
 from sqlalchemy import create_engine
-import os
 
 
 # EXTRACT
