@@ -22,13 +22,20 @@ def series_sum(n):
     else:
         sum = 0.0
         for i in range(0, n):
-            divisor = 1 + (3 * i)
-            sum += 1 / divisor
+            sum += 1 / (1 + (3 * i))
         return f"{sum:.2f}"
 
 
-# ---------------------------------- TESTS ----------------------------------
+def refactored_series_sum(n):
+    sum = 0.0
+    for i in range(0, n):
+        divisor = 1 + (3 * i)
+        sum += 1 / divisor
+    return f"{sum:.2f}"
 
+
+# ---------------------------------- TESTS ----------------------------------
+print("-------INITIAL TESTS-------")
 test1 = series_sum(1)
 solution1 = "1.00"
 print(f"{test1} should = {solution1}")
@@ -44,3 +51,14 @@ print(f"{test3} should = {solution3}")
 test4 = series_sum(0)
 solution4 = "0.00"
 print(f"{test4} should = {solution4}")
+
+
+print("-------REFACTORED TESTS-------")
+test5 = refactored_series_sum(1)
+test6 = refactored_series_sum(2)
+test7 = refactored_series_sum(5)
+test8 = refactored_series_sum(0)
+
+print(
+    f"{test5} should = 1.00 \n{test6} should = 1.25 \n{test7} should = 1.57 \n{test8} should = 0.00 "
+)
