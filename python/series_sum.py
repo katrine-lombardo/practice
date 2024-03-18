@@ -17,12 +17,14 @@ Examples:(Input --> Output)
 
 
 def series_sum(n):
-    if n == 0:
+    if n <= 1:
         return f"{n:.2f}"
     else:
-        solution = ""
-
-        return solution
+        sum = 0.0
+        for i in range(0, n):
+            divisor = 1 + (3 * i)
+            sum += 1 / divisor
+        return f"{sum:.2f}"
 
 
 # ---------------------------------- TESTS ----------------------------------
