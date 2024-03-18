@@ -28,6 +28,14 @@ def solution(picture):
     return framed_picture
 
 
+def refactored_solution(picture):
+    return (
+        ["*" * (2 + len(picture[0]))]
+        + [f"*{row}*" for row in picture]
+        + ["*" * (2 + len(picture[0]))]
+    )
+
+
 # ------- TESTS -------
 print("-------TESTS-------")
 picture1 = ["abc", "ded"]
@@ -46,3 +54,14 @@ if test1 == solution1 and test2 == solution2 and test3 == solution3:
     print("Yay! All tests passed")
 else:
     print("Errors")
+
+
+test4 = refactored_solution(picture1)
+test5 = refactored_solution(picture2)
+test6 = refactored_solution(picture3)
+
+
+if test4 == solution1 and test5 == solution2 and test6 == solution3:
+    print("Yay! All refactored tests passed")
+else:
+    print("Refactored errors")
