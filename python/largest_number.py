@@ -15,10 +15,22 @@ def solution(n):
     return int(result)
 
 
+def refactored_solution(n):
+    return int("9" * n)
+
+
 print("-------TESTS-------")
 test1 = solution(2)
 test2 = solution(1)
 test3 = solution(7)
+if test1 == 99 and test2 == 9 and test3 == 9999999:
+    print("Yay! All tests passed")
+else:
+    print("Errors")
+
+test1 = refactored_solution(2)
+test2 = refactored_solution(1)
+test3 = refactored_solution(7)
 if test1 == 99 and test2 == 9 and test3 == 9999999:
     print("Yay! All tests passed")
 else:
