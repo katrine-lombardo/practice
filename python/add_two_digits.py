@@ -9,9 +9,8 @@ solution(n) = 11.
 
 
 def solution(n):
-    stringed_n = str(n)
-    first_digit = int(stringed_n[0:1])
-    second_digit = int(stringed_n[1:])
+    first_digit = int(str(n)[0:1])
+    second_digit = int(str(n)[1:])
     return first_digit + second_digit
 
 
