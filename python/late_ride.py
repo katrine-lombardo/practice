@@ -37,6 +37,12 @@ def solution(n):
     return total
 
 
+def refactored_solution(n):
+    hh = int(n / 60)
+    mm = n % 60
+    return (hh % 10) + int(hh / 10) + (mm % 10) + int(mm / 10)
+
+
 print("-------TESTS-------")
 test1 = solution(240)
 solution1 = 4
@@ -48,4 +54,13 @@ print(
     "Yay, all tests passed"
     if test1 == solution1 and test2 == solution2 and test3 == solution3
     else "Errors"
+)
+
+test4 = refactored_solution(240)
+test5 = refactored_solution(808)
+test6 = refactored_solution(1439)
+print(
+    "Yay, all tests passed refactored solution"
+    if test4 == solution1 and test5 == solution2 and test6 == solution3
+    else "Errors in refactored solution"
 )
