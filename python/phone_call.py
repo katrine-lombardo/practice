@@ -53,14 +53,41 @@ def solution(min1, min2_10, min11, s):
     return minute_tracker
 
 
-test1 = solution(3, 1, 2, 20)
+def refactored_solution(min1, min2_10, min11, s):
+    if s < min1:
+        return 0
+
+    first_minute = 1 if s >= min1 else 0
+    s -= min1 * first_minute
+
+    second_minutes = min(s // min2_10, 9)
+    s -= min2_10 * second_minutes
+
+    remainaing_minutes = s // min11
+
+    return first_minute + second_minutes + remainaing_minutes
+
+
+# ---------- TESTING ----------
+
 solution1 = 14
-test2 = solution(2, 2, 1, 2)
 solution2 = 1
-test3 = solution(10, 1, 2, 22)
 solution3 = 11
+
+test1 = solution(3, 1, 2, 20)
+test2 = solution(2, 2, 1, 2)
+test3 = solution(10, 1, 2, 22)
 print(
     "Yay, all tests passed!"
     if test1 == solution1 and test2 == solution2 and test3 == solution3
     else "Errors"
+)
+
+test4 = refactored_solution(3, 1, 2, 20)
+test5 = refactored_solution(2, 2, 1, 2)
+test6 = refactored_solution(10, 1, 2, 22)
+print(
+    "Yay, all tests passed refactored solution"
+    if test4 == solution1 and test5 == solution2 and test6 == solution3
+    else "Errors in refactored solution!"
 )
