@@ -23,3 +23,8 @@ SELECT (number1 % number2) as mod FROM decimals;
 --    You are given a table 'quarterof' with column 'month', return a table with
 --    column 'month' and your result in a column named 'res'.
 SELECT month, CEIL(month/3.0)::int AS res FROM quarterof;
+
+-- 5. Write a function that takes an argument and returns the square of it. You
+--    are given a table 'square' with column 'n'. Return a table with this
+--    column and your result in a column named 'res'
+SELECT n, (n*n) AS res FROM square;
