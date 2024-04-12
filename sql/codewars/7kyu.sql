@@ -25,3 +25,24 @@ SELECT
   LENGTH(number4::text) AS octnum4,
   LENGTH(number5::text) AS octnum5
 FROM numbers;
+
+-- 3. You have access to a table of monsters. Your task is to make a new table
+--    where each column should contain the length of the string in the column to
+--    its right (last column should contain length of string in the first
+--    column). Remember some column values are not currently strings. Column
+--    order and titles should remain unchanged.
+SELECT
+  LENGTH(CAST(name AS varchar)) AS id,
+  LENGTH(CAST(legs AS varchar)) AS name,
+  LENGTH(CAST(arms AS varchar)) AS legs,
+  LENGTH(CAST(characteristics AS varchar)) AS arms,
+  LENGTH(CAST(id AS varchar)) AS characteristics
+FROM monsters;
+-- or
+SELECT
+  LENGTH(name::varchar) AS id,
+  LENGTH(legs::varchar) AS name,
+  LENGTH(arms::varchar) AS legs,
+  LENGTH(characteristics::varchar) AS arms,
+  LENGTH(id::varchar) AS characteristics
+FROM monsters;
