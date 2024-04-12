@@ -56,16 +56,9 @@ def solution(min1, min2_10, min11, s):
 def refactored_solution(min1, min2_10, min11, s):
     if s < min1:
         return 0
-
-    first_minute = 1 if s >= min1 else 0
-    s -= min1 * first_minute
-
-    second_minutes = min(s // min2_10, 9)
-    s -= min2_10 * second_minutes
-
-    remaining_minutes = s // min11
-
-    return first_minute + second_minutes + remaining_minutes
+    elif s >= min1 and s <= min1 + 9 * min2_10:
+        return 1 + (s - min1) // min2_10
+    return 10 + (s - min1 - 9 * min2_10) // min11
 
 
 # ---------- TESTING ----------
