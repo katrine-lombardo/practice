@@ -44,3 +44,10 @@ SELECT id, name, birthday, LOWER(race) as race FROM demographics;
 -- 8. You have access to a table of monsters. Your task is to turn the numeric
 --    columns (arms, legs) into equivalent hexadecimal values.
 SELECT TO_HEX(legs) AS legs, TO_HEX(arms) AS arms FROM monsters;
+
+-- 9. In this game, the hero moves from left to right. The player rolls the dice
+--    and moves the number of spaces indicated by the dice two times. In SQL,
+--    you will be given a table moves with columns position and roll. Return a
+--    table which uses the current position of the hero and the roll (1-6) and
+--    returns the new position in a column res.
+SELECT (position + (roll*2)) AS res FROM moves;
