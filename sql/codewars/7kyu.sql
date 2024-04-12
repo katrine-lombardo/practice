@@ -10,3 +10,7 @@
 SELECT unnest(REGEXP_SPLIT_TO_ARRAY(text,'[aeiou]'))
 AS results
 FROM random_string;
+-- or
+SELECT
+  REGEXP_SPLIT_TO_TABLE(text, '[aeiou]') AS results
+FROM random_string
