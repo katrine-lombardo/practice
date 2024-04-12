@@ -13,4 +13,15 @@ FROM random_string;
 -- or
 SELECT
   REGEXP_SPLIT_TO_TABLE(text, '[aeiou]') AS results
-FROM random_string
+FROM random_string;
+
+-- 2. Given a table of random numbers, your job is to return a table in where
+--    each value is the number of bytes in the string representation of the
+--    number.
+SELECT
+  LENGTH(number1::text) AS octnum1,
+  LENGTH(number2::text) AS octnum2,
+  LENGTH(number3::text) AS octnum3,
+  LENGTH(number4::text) AS octnum4,
+  LENGTH(number5::text) AS octnum5
+FROM numbers;
