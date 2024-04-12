@@ -28,3 +28,11 @@ SELECT month, CEIL(month/3.0)::int AS res FROM quarterof;
 --    are given a table 'square' with column 'n'. Return a table with this
 --    column and your result in a column named 'res'
 SELECT n, (n*n) AS res FROM square;
+
+-- 6. For this challenge you need to create a simple SELECT statement that will
+--    return all columns from the people table WHERE their age is over 50. You
+--    should return all people fields where their age is over 50 and order by
+--    the age descending.
+SELECT * FROM people
+WHERE age > 50
+ORDER BY age DESC;
