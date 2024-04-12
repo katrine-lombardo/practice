@@ -36,3 +36,7 @@ SELECT n, (n*n) AS res FROM square;
 SELECT * FROM people
 WHERE age > 50
 ORDER BY age DESC;
+
+-- 7. Given a demographics table you need to return the same table where all
+--    letters are lowercase in the race column.
+SELECT id, name, birthday, LOWER(race) as race FROM demographics;
