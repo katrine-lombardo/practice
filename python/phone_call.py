@@ -30,25 +30,25 @@ solution(min1, min2_10, min11, s) = 14.
 
 
 def solution(min1, min2_10, min11, s):
-    if s == 0 or s < min1:
+    balance = s - min1
+    if balance < 0:
         return 0
 
-    balance = s
-    minute_tracker = 0
-
     # First minute
-    if balance >= min1:
-        balance -= min1
-        minute_tracker += 1
+    minute_tracker = 1
 
     # Minutes 2 - 10
-    if balance >= min2_10 * 9:
-        minute_tracker += 9
-        balance -= min2_10 * 9
+    for minute in range(2, 11):
+        if balance >= min2_10:
+            minute_tracker += 1
+            balance -= min2_10
+        else:
+            break
 
     # Minutes 11+
-    remaining_minutes = balance // min11
-    minute_tracker += remaining_minutes
+    if balance > 0 and minute_tracker >= 10:
+        remaining_minutes = balance // min11
+        minute_tracker += remaining_minutes
 
     return minute_tracker
 
@@ -63,31 +63,37 @@ def refactored_solution(min1, min2_10, min11, s):
     second_minutes = min(s // min2_10, 9)
     s -= min2_10 * second_minutes
 
-    remainaing_minutes = s // min11
+    remaining_minutes = s // min11
 
-    return first_minute + second_minutes + remainaing_minutes
+    return first_minute + second_minutes + remaining_minutes
 
 
 # ---------- TESTING ----------
 
 solution1 = 14
-solution2 = 1
-solution3 = 11
-
 test1 = solution(3, 1, 2, 20)
-test2 = solution(2, 2, 1, 2)
-test3 = solution(10, 1, 2, 22)
-print(
-    "Yay, all tests passed!"
-    if test1 == solution1 and test2 == solution2 and test3 == solution3
-    else "Errors"
-)
+print(f"Test1 = {test1 == solution1}")
 
-test4 = refactored_solution(3, 1, 2, 20)
-test5 = refactored_solution(2, 2, 1, 2)
-test6 = refactored_solution(10, 1, 2, 22)
-print(
-    "Yay, all tests passed refactored solution"
-    if test4 == solution1 and test5 == solution2 and test6 == solution3
-    else "Errors in refactored solution!"
-)
+solution2 = 1
+test2 = solution(2, 2, 1, 2)
+print(f"Test2 = {test2 == solution2}")
+
+solution3 = 11
+test3 = solution(10, 1, 2, 22)
+print(f"Test3 = {test3 == solution3}")
+
+solution4 = 3
+test4 = solution(1, 2, 1, 6)
+print(f"Test4 = {test4 == solution4}")
+
+reftest1 = refactored_solution(3, 1, 2, 20)
+print(f"Refest1 = {reftest1 == solution1}")
+
+reftest2 = refactored_solution(2, 2, 1, 2)
+print(f"Refest2 = {reftest2 == solution2}")
+
+reftest3 = refactored_solution(10, 1, 2, 22)
+print(f"Refest3 = {reftest3 == solution3}")
+
+reftest4 = refactored_solution(1, 2, 1, 6)
+print(f"Refest4 = {reftest4 == solution4}")
