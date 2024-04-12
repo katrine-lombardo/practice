@@ -51,3 +51,7 @@ SELECT TO_HEX(legs) AS legs, TO_HEX(arms) AS arms FROM monsters;
 --    table which uses the current position of the hero and the roll (1-6) and
 --    returns the new position in a column res.
 SELECT (position + (roll*2)) AS res FROM moves;
+
+-- 10. For this challenge you need to create a simple SUM statement that will
+--     sum all the ages.
+SELECT SUM(age) as age_sum FROM people;
