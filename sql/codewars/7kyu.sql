@@ -93,3 +93,9 @@ SELECT
   SUBSTRING(characteristics, '^[^,]+') AS characteristic
 FROM monsters
 ORDER BY id;
+
+-- 7. Given the table 'decimals' return a table with a single column towardzero
+--    where the values are the result of number1 + number2 truncated towards
+--    zero.
+SELECT CAST(SPLIT_PART(((number1 + number2)::TEXT), '.', 1) AS FLOAT) AS towardzero
+FROM decimals;
