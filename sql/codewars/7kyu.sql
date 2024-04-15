@@ -99,3 +99,6 @@ ORDER BY id;
 --    zero.
 SELECT CAST(SPLIT_PART(((number1 + number2)::TEXT), '.', 1) AS FLOAT) AS towardzero
 FROM decimals;
+-- or
+SELECT TRUNC(number1 + number2) AS towardzero
+FROM decimals;
