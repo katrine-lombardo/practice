@@ -72,3 +72,11 @@ SELECT
     END AS res
 FROM
     pentagonal;
+-- or
+SELECT
+  n,
+  CASE
+    WHEN n <= 0 THEN -1
+    ELSE (5 * (n * (n - 1)/2) + 1)
+  END AS res
+FROM pentagonal;
