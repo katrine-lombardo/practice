@@ -55,3 +55,20 @@ SELECT
   CBRT(number1) AS cuberoot,
   LN(number2) AS logarithm
 FROM decimals;
+
+-- 5. Complete the function that takes an integer and calculates how many dots
+--    exist in a pentagonal shape around the center dot on the Nth iteration.
+--    The first iteration is only a single dot. On the second, there are 6 dots.
+--    On the third, there are 16 dots, and on the fourth there are 31 dots. The
+--    sequence is: 1, 6, 16, 31... If the input is equal to or less than 0,
+--    return -1. You are given a table 'pentagonal' with column 'n' (the bounds
+--    in SQL translation: -1000 <= n <= 10^5) Return a table with all this column
+--    and your result in a column named 'res'.
+SELECT
+    n,
+    CASE
+        WHEN n <= 0 THEN -1
+        ELSE ((5*n^2 - 5*n + 2)/2)::BIGINT
+    END AS res
+FROM
+    pentagonal;
