@@ -60,19 +60,22 @@ def rgb(r, g, b):
     return hex_code
 
 
+def refactored_rgb(r, g, b):
+    r = max(0, min(255, r))
+    g = max(0, min(255, g))
+    b = max(0, min(255, b))
+
+    return f"{r:02X}{g:02X}{b:02X}"
+
+
 ## TESTS
 
-test1 = rgb(255, 255, 255)
-answer1 = "FFFFFF"
+print(f"{rgb(255, 255, 255)} = FFFFFF")
+print(f"{rgb(220, 20, 60)} = DC143C")
+print(f"{rgb(1, 2, 3)} = 010203")
+print(f"{rgb(-20, 275, 125)} = 00FF7D")
 
-crimson = rgb(220, 20, 60)
-crimson_hex = "DC143C"
-print(f"{crimson} = {crimson_hex}")
-
-near_zero = rgb(1, 2, 3)
-near_zero_hex = "010203"
-print(f"{near_zero} = {near_zero_hex}")
-
-outta_range = rgb(-20, 275, 125)
-outta_range_hex = "00FF7D"
-print(f"{outta_range} = {outta_range_hex}")
+print(f"{refactored_rgb(255, 255, 255)} = FFFFFF")
+print(f"{refactored_rgb(220, 20, 60)} = DC143C")
+print(f"{refactored_rgb(1, 2, 3)} = 010203")
+print(f"{refactored_rgb(-20, 275, 125)} = 00FF7D")
