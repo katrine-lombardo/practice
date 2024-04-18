@@ -39,22 +39,33 @@ For C: The result is freed.
 // 2. Make an object to store weight values and sorting order
 
 function orderWeight(strng) {
-  const strngArray = strng.split(" ");
+  const strngArray = strng.split(/\s+/);
+
+  const calculateWeight = (num) => {
+    return num.split("").reduce((sum, digit) => sum + parseInt(digit, 10), 0);
+  };
+
   let strngObj = {};
 
-  for (let i = 0; i < strngArray.length; i++) {
-    let orderSum = strngArray[i]
-      .split("")
-      .reduce((a, b) => parseInt(a) + parseInt(b));
-    strngObj[strngArray[i]] = orderSum;
-  }
+  strngArray.forEach((num) => {
+    const weight = calculateWeight(num);
+    if (!strngObj[weight]) {
+      strngObj[weight] = [];
+    }
+    strngObj[weight].push(num);
+  });
 
   let sortedKeys = Object.keys(strngObj).sort(
-    (a, b) => strngObj[a] - strngObj[b]
+    (a, b) => parseInt(a, 10) - parseInt(b, 10)
   );
+  let sortedNums = [];
 
-  let sortedString = sortedKeys.join(" ");
-  return sortedString;
+  sortedKeys.forEach((weight) => {
+    strngObj[weight].sort();
+    sortedNums.push(...strngObj[weight]);
+  });
+
+  return sortedNums.join(" ");
 }
 
 // TESTS
