@@ -38,6 +38,20 @@ function order(words) {
   return newSentence;
 }
 
+function refactoredOrder(words) {
+  if (words === "") {
+    return "";
+  }
+  let wordArray = words.split(" ");
+  let orderedWords = [];
+
+  for (let word of wordArray) {
+    const position = parseInt(word.match(/\d+/)[0]);
+    orderedWords[position - 1] = word;
+  }
+  return orderedWords.join(" ");
+}
+
 // ---------------- TESTS ----------------
 
 const test1 = order("is2 Thi1s T4est 3a");
@@ -48,3 +62,14 @@ console.log(`Fo1r the2 g3ood 4of th5e pe6ople = ${test2}`);
 
 const test3 = order("");
 console.log(` = ${test3}`);
+
+// ---------------- REFACTORED TESTS ----------------
+
+const refactoredTest1 = refactoredOrder("is2 Thi1s T4est 3a");
+console.log(`Thi1s is2 3a T4est = ${refactoredTest1}`);
+
+const refactoredTest2 = refactoredOrder("4of Fo1r pe6ople g3ood th5e the2");
+console.log(`Fo1r the2 g3ood 4of th5e pe6ople = ${refactoredTest2}`);
+
+const refactoredTest3 = refactoredOrder("");
+console.log(` = ${refactoredTest3}`);
