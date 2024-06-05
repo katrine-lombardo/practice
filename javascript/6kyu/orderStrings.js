@@ -7,6 +7,9 @@ Note: Numbers can be from 1 to 9. So 1 will be the first word (not 0).
 If the input string is empty, return an empty string. The words in the input
 String will only contain valid consecutive numbers.
 */
+// Any repeating characters
+// Gabe would return true
+// Blender return false
 
 // STRATEGY
 // Input: string containing one int (or empty)
