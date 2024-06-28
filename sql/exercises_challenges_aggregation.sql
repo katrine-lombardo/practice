@@ -34,6 +34,7 @@ WHERE DATE(starttime) BETWEEN '2012-09-01' AND '2012-09-30'
 GROUP BY facid
 ORDER BY SUM(slots);
 
+
 -- 06. List the total slots booked per facility per month
 --     Produce a list of the total number of slots booked per facility per month
 --     in the year of 2012. Produce an output table consisting of facility id
@@ -44,8 +45,15 @@ WHERE starttime BETWEEN '2011-12-31' AND '2013-01-01'
 GROUP BY facid, "month"
 ORDER BY facid, "month";
 
--- 07. Find the count of members who have made at least one booking
 
+-- 07. Find the count of members who have made at least one booking
+--     Find the total number of members (including guests) who have made at
+--     least one booking.
+SELECT COUNT(DISTINCT(memid)) AS count
+FROM cd.bookings;
+-- Using a subquery:
+SELECT COUNT(*) FROM
+    (SELECT DISTINCT memid FROM cd.bookings) AS mems;
 
 
 -- 08. List facilities with more than 1000 slots booked
