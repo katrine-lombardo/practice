@@ -1,3 +1,6 @@
+-- AGGREGATION
+-- https://pgexercises.com/questions/aggregates/
+
 -- 01. Count the number of facilities
 SELECT COUNT(facid) FROM cd.facilities;
 
@@ -32,8 +35,14 @@ GROUP BY facid
 ORDER BY SUM(slots);
 
 -- 06. List the total slots booked per facility per month
-
-
+--     Produce a list of the total number of slots booked per facility per month
+--     in the year of 2012. Produce an output table consisting of facility id
+--     and slots, sorted by the id and month.
+SELECT facid, EXTRACT(MONTH FROM DATE(starttime)) AS "month", SUM(slots) AS "Total Slots"
+FROM cd.bookings
+WHERE starttime BETWEEN '2011-12-31' AND '2013-01-01'
+GROUP BY facid, "month"
+ORDER BY facid, "month";
 
 -- 07. Find the count of members who have made at least one booking
 

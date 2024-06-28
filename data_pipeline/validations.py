@@ -34,10 +34,10 @@ def extract() -> dict:
         # VALIDATE COMPLETENESS
         def validate_completeness(monsters: dict) -> bool:
             required_fields = [
+                "slug",
                 "name",
                 "size",
                 "type",
-                "alignment",
                 "armor_class",
                 "hit_points",
             ]
@@ -64,9 +64,9 @@ def extract() -> dict:
 
         # INITIAL QUALITY CONTROL (QC)
         def initial_quality_control(monsters: dict) -> bool:
-            monster_names = [monster.get("name") for monster in monsters]
-            if len(monster_names) != len(set(monster_names)):
-                print("Duplicate monster names found")
+            monster_slugs = [monster.get("slug") for monster in monsters]
+            if len(monster_slugs) != len(set(monster_slugs)):
+                print("Duplicate monster slugs found")
                 return False
             # Add more QC checks as necessary
             return True
